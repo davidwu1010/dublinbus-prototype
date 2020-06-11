@@ -1,34 +1,46 @@
 import React from 'react';
 import { AppBar, IconButton, Toolbar, Typography, Hidden, Tabs, Tab, makeStyles } from '@material-ui/core';
 import  MenuIcon from '@material-ui/icons/Menu';
+import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { toggleDrawer } from '../../redux/drawer/drawer.action';
 
-const useStyles = makeStyles({
-  tabContainer: {
+const useStyles = makeStyles((theme) => ({
+  loginButton: {
     marginLeft: 'auto'
   },
-  appBar: {
-    height: '70px'
+  menuButton: {
+    marginRight: theme.spacing(2)
   }
-});
+}));
 
-function Header() {
+function Header(props) {
+  const { toggleDrawer } = props;
+
   const classes = useStyles();
   return (
-    <AppBar position="static" className={classes.appBar}>
+    <React.Fragment>
+    <AppBar position="fixed" className={classes.appBar}>
       <Toolbar>
-        <Hidden smUp>
-          <IconButton edge="start">
+          <IconButton edge="start" className={classes.menuButton} onClick={toggleDrawer}>
             <MenuIcon />
           </IconButton>
-        </Hidden>
         <Typography variant="h6">Dublin Bus</Typography>
-        <Tabs value={false} className={classes.tabContainer}>
-          <Tab label="Saved Routes"/>
-          <Tab label="Timetable"/>
-        </Tabs>
+        <Button className={classes.loginButton} color="inherit">Login</Button>
       </Toolbar>
     </AppBar>
+    <Toolbar />
+    </React.Fragment>
   );
 }
 
-export default Header;
+const mapStateToProps = createStructuredSelector({
+
+});
+
+const mapDispatchToProps = dispatch => ({
+  toggleDrawer: () => dispatch(toggleDrawer())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

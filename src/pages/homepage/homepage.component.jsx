@@ -1,27 +1,40 @@
 import React from 'react';
 import FormInput from '../../components/form-input/form-input.component';
-import Grid from '@material-ui/core/Grid';
 import MapContainer from '../../components/map-container/map-container.component';
 import Hidden from '@material-ui/core/Hidden';
 import { createStructuredSelector } from 'reselect';
 import { selectRoutes } from '../../redux/planner/planner.selector';
 import { connect } from 'react-redux';
 import RouteCard from '../../components/route-card/route-card.component';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  paperContainer: {
+    width: '400px',
+    position: 'fixed',
+    height: '100vh',
+    overflowY: 'auto',
+    [theme.breakpoints.down('xs')]: {
+      width: '100vw'
+    }
+  }
+}));
 
 function HomePage(props) {
   const { routes } = props;
+
+  const classes = useStyles();
   return (
-    <Grid container>
-      <Grid item xs={12} sm={3}>
-        <FormInput />
-        { routes.map((route, index) => (<RouteCard key={index} steps={route.legs[0].steps}/>) ) }
-      </Grid>
+    <>
+      <Paper elevation={10} className={classes.paperContainer}>
+          <FormInput/>
+          { routes.map((route, index) => (<RouteCard key={index} steps={route.legs[0].steps}/>) ) }
+      </Paper>
       <Hidden xsDown>
-        <Grid item xs="auto">
-          <MapContainer />
-      </Grid>
+        <MapContainer />
       </Hidden>
-    </Grid>
+      </>
   );
 }
 

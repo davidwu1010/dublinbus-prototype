@@ -9,9 +9,10 @@ import { connect } from 'react-redux';
 // const apiKey = 'AIzaSyBPyIqf7hOMSCjqSq--50UKiJ9Xzmbssmk';
 
 const containerStyle = {
-  width: '75vw',
-  height: 'calc(100vh - 70px)',
-  position: 'absolute',
+  position: 'fixed',
+  height: '100vh',
+  width: '100vw',
+  zIndex: -1
 };
 
 const center = {
@@ -23,7 +24,7 @@ const center = {
 function MapContainer(props) {
   const { polylines } = props;
   return(
-    <Map google={window.google} containerStyle={containerStyle} initialCenter={center} zoom={13}>
+    <Map google={window.google} containerStyle={containerStyle} initialCenter={center} zoom={13} disableDefaultUI={true}>
       { polylines.map((polyline, index) => <Polyline key={index} path={polyline} />) }
     </Map>
   );

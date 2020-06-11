@@ -1,19 +1,18 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 import { CssBaseline } from '@material-ui/core';
 
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
+import LeftDrawer from './components/left-drawer/left-drawer.component';
 
 function App() {
   return (
     <React.Fragment>
       <CssBaseline />
       <Header />
-      <Switch>
-        <Route path="/" component={HomePage} />
-      </Switch>
+      <HomePage />
+      <LeftDrawer />
     </React.Fragment>
   );
 }

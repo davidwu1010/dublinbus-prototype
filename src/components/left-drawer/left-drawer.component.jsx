@@ -1,0 +1,79 @@
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { selectDrawerOpen } from '../../redux/drawer/drawer.selectors';
+import { toggleDrawer } from '../../redux/drawer/drawer.action';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import BookmarksIcon from '@material-ui/icons/Bookmarks';
+
+const useStyles = makeStyles({
+  list: {
+    width: 250,
+  }
+});
+
+function LeftDrawer(props) {
+  const { open, toggleDrawer } = props;
+
+  const classes = useStyles();
+
+  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+  const list = () => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer}
+      onKeyDown={toggleDrawer}
+    >
+      <List>
+        <ListItem button>
+          <ListItemIcon>
+            <BookmarksIcon />
+          </ListItemIcon>
+          <ListItemText primary="Saved" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <AccessTimeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Timetables" />
+        </ListItem>
+      </List>
+      <Divider />
+    </div>
+  );
+
+  const anchor = 'left';
+  return (
+      <React.Fragment>
+        <SwipeableDrawer
+          anchor={'left'}
+          open={open}
+          onClose={toggleDrawer}
+          onOpen={toggleDrawer}
+          disableBackdropTransition={!iOS}
+          disableDiscovery={iOS}
+        >
+          {list()}
+        </SwipeableDrawer>
+      </React.Fragment>
+  );
+}
+
+const mapStateToProps = createStructuredSelector({
+  open: selectDrawerOpen
+});
+
+const mapDispatchToProps = dispatch => ({
+  toggleDrawer: () => dispatch(toggleDrawer())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeftDrawer);

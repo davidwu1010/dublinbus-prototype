@@ -51,6 +51,9 @@ function FormInput(props) {
             </Grid>
           </Grid>
           <Grid item>
+
+          </Grid>
+          <Grid item>
             <Button variant="contained"
               color="primary"
               onClick={() => startDirections(origin, dest)}>
