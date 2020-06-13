@@ -15,12 +15,15 @@ const useStyles = makeStyles(theme => ({
   paperContainer: {
     position: 'fixed',
     width: '400px',
-    height: 'calc(100vh - 64px)',
+    height: 'calc(100% - 64px)',
     overflowX: 'hidden',
     overflowY: 'auto',
+    WebkitTransform: 'translate3d(0,0,0)',
     [theme.breakpoints.down('xs')]: {
-      width: '100vw',
-      height: 'calc(100vh - 48px)',
+      position: 'relative',
+      width: '100%',
+      height: 'calc(100% - 48px)',
+      overflow: 'visible'
     }
   }
 }));
@@ -31,7 +34,7 @@ function HomePage(props) {
   const classes = useStyles();
   return (
     <>
-      <Paper elevation={10} className={classes.paperContainer}>
+      <Paper elevation={0} className={classes.paperContainer}>
         <Grid container direction="column">
           <Grid item>
             <FormInput />
