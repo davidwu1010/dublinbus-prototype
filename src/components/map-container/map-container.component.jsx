@@ -25,7 +25,7 @@ function MapContainer(props) {
   const { polylines } = props;
   return(
     <Map google={window.google} containerStyle={containerStyle} initialCenter={center} zoom={13} disableDefaultUI={true}>
-      { polylines.map((polyline, index) => <Polyline key={index} path={polyline} />) }
+      { polylines.map((polyline, index) => <Polyline key={index} path={polyline} strokeColor="#BBBDBF" strokeWeight={6}/>) }
     </Map>
   );
 }

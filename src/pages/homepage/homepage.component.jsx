@@ -27,7 +27,7 @@ function HomePage(props) {
   const classes = useStyles();
   return (
     <>
-      <Paper elevation={10} className={classes.paperContainer}>
+      <Paper elevation={10} className={classes.paperContainer} spacing={1}>
           <FormInput/>
           { routes.map((route, index) => (<RouteCard key={index} steps={route.legs[0].steps}/>) ) }
       </Paper>
