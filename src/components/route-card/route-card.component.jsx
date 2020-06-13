@@ -8,7 +8,7 @@ function RouteCard(props) {
 
   function stepToDescription(step) {
     let instructions = step.instructions;
-    if (step.travel_mode==='TRANSIT') {
+    if (step.travel_mode === 'TRANSIT') {
       instructions += ', ' + step.transit.line.short_name;
     }
     return instructions;
@@ -16,7 +16,7 @@ function RouteCard(props) {
 
   return (
     <Card variant="outlined">
-      <CardContent>
+      <CardContent >
         { steps.map((step, index) => (<Typography key={index}>{stepToDescription(step)}</Typography>)) }
       </CardContent>
     </Card>

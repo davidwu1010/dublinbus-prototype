@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
     height: 'calc(100% - 64px)',
     overflowX: 'hidden',
     overflowY: 'auto',
-    WebkitTransform: 'translate3d(0,0,0)',
     [theme.breakpoints.down('xs')]: {
       position: 'relative',
       width: '100%',

@@ -37,6 +37,13 @@ const plannerReducer = (state = INITIAL_STATE, action) => {
         ...state,
         directions: action.payload
       };
+    case PlannerActionTypes.SWITCH_AUTOCOMPLETE_OPTIONS:
+      const temp = state.destList;
+      return {
+        ...state,
+        destList: state.originList,
+        originList: temp
+      };
     default:
       return state;
   }

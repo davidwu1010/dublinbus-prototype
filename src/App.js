@@ -10,7 +10,6 @@ import { toggleDrawer } from './redux/drawer/drawer.action';
 import { connect } from 'react-redux';
 
 function App(props) {
-  const { toggleDrawer } = props;
   return (
     <React.Fragment>
       <CssBaseline />

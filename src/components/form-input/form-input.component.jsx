@@ -5,7 +5,13 @@ import TextField from '@material-ui/core/TextField';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { autocompleteStart, setDest, setOrigin, directionsStart } from '../../redux/planner/planner.actions';
+import {
+  autocompleteStart,
+  setDest,
+  setOrigin,
+  directionsStart,
+  switchAutocompleteOptions
+} from '../../redux/planner/planner.actions';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { createStructuredSelector } from 'reselect';
 import {
@@ -17,6 +23,7 @@ import Card from '@material-ui/core/Card';
 import Fab from '@material-ui/core/Fab';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import * as dayjs from 'dayjs';
 
 const useStyles = makeStyles({
   card: {
@@ -36,9 +43,22 @@ const useStyles = makeStyles({
 });
 
 function FormInput(props) {
-  const { startAutocomplete, setOrigin, setDest, originPredictions, destPredictions, startDirections, origin, dest } = props;
+  const { startAutocomplete,
+          setOrigin,
+          setDest,
+          originPredictions,
+          destPredictions,
+          startDirections,
+          origin,
+          dest,
+          switchAutocompleteOptions
+        } = props;
 
   const classes = useStyles();
+
+  function localTimeToISOString() {
+    return dayjs().format('YYYY-MM-DDTHH:mm:ss');
+  }
 
   function originHandler(event, value) {
     setOrigin(value);
@@ -50,9 +70,15 @@ function FormInput(props) {
     startAutocomplete(value, 'dest');
   }
 
+  function switchOriginDest(origin, dest) {
+    setDest(origin);
+    setOrigin(dest);
+    switchAutocompleteOptions();
+  }
+
   return (
     <Card variant="outlined" className={classes.card}>
-      <Fab color="primary" className={classes.switchButton}>
+      <Fab color="primary" className={classes.switchButton} onClick={() => switchOriginDest(origin, dest)}>
         <ImportExportIcon />
       </Fab>
       <Grid container direction="column" alignItems="center" spacing={1}>
@@ -60,6 +86,7 @@ function FormInput(props) {
           <Autocomplete
             freeSolo
             options={originPredictions}
+            inputValue={origin}
             renderInput={params => <TextField {...params} label="Origin" variant="outlined" />}
             onInputChange={originHandler}
             className={classes.input}
@@ -69,6 +96,7 @@ function FormInput(props) {
           <Autocomplete
             freeSolo
             options={destPredictions}
+            inputValue={dest}
             renderInput={params => <TextField {...params} label="Destination" variant="outlined" />}
             onInputChange={destHandler}
             className={classes.input}
@@ -79,7 +107,7 @@ function FormInput(props) {
             id="datetime-local"
             label="Depart at"
             type="datetime-local"
-            defaultValue="2017-05-24T10:30"
+            defaultValue={localTimeToISOString()}
             InputLabelProps={{
               shrink: true,
             }}
@@ -113,6 +141,7 @@ const mapDispatchToProps = dispatch => ({
   setOrigin: origin => dispatch(setOrigin(origin)),
   setDest: dest => dispatch(setDest(dest)),
   startDirections: (origin, dest) => dispatch(directionsStart(origin, dest)),
+  switchAutocompleteOptions: () => dispatch(switchAutocompleteOptions())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormInput);
