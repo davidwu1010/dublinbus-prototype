@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/dublinbus-prototype/static/js/main.7b50890b.chunk.js",
-    "main.js.map": "/dublinbus-prototype/static/js/main.7b50890b.chunk.js.map",
+    "main.js": "/dublinbus-prototype/static/js/main.8ecf37f3.chunk.js",
+    "main.js.map": "/dublinbus-prototype/static/js/main.8ecf37f3.chunk.js.map",
     "runtime-main.js": "/dublinbus-prototype/static/js/runtime-main.e89fcd1e.js",
     "runtime-main.js.map": "/dublinbus-prototype/static/js/runtime-main.e89fcd1e.js.map",
-    "static/js/2.ab8d31c3.chunk.js": "/dublinbus-prototype/static/js/2.ab8d31c3.chunk.js",
-    "static/js/2.ab8d31c3.chunk.js.map": "/dublinbus-prototype/static/js/2.ab8d31c3.chunk.js.map",
+    "static/js/2.1530b159.chunk.js": "/dublinbus-prototype/static/js/2.1530b159.chunk.js",
+    "static/js/2.1530b159.chunk.js.map": "/dublinbus-prototype/static/js/2.1530b159.chunk.js.map",
     "index.html": "/dublinbus-prototype/index.html",
-    "precache-manifest.a5d05638ea3606711b4d3fef3ae75472.js": "/dublinbus-prototype/precache-manifest.a5d05638ea3606711b4d3fef3ae75472.js",
+    "precache-manifest.5e37cbd2069c979caeac4de4eb9ebdaa.js": "/dublinbus-prototype/precache-manifest.5e37cbd2069c979caeac4de4eb9ebdaa.js",
     "service-worker.js": "/dublinbus-prototype/service-worker.js",
-    "static/js/2.ab8d31c3.chunk.js.LICENSE.txt": "/dublinbus-prototype/static/js/2.ab8d31c3.chunk.js.LICENSE.txt"
+    "static/js/2.1530b159.chunk.js.LICENSE.txt": "/dublinbus-prototype/static/js/2.1530b159.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e89fcd1e.js",
-    "static/js/2.ab8d31c3.chunk.js",
-    "static/js/main.7b50890b.chunk.js"
+    "static/js/2.1530b159.chunk.js",
+    "static/js/main.8ecf37f3.chunk.js"
   ]
 }
