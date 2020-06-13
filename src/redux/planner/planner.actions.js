@@ -46,3 +46,8 @@ export const directionsFailure = error => ({
 export const switchAutocompleteOptions = () => ({
   type: PlannerActionTypes.SWITCH_AUTOCOMPLETE_OPTIONS
 });
+
+export const selectRoute = routeId => ({
+  type: PlannerActionTypes.SELECT_ROUTE,
+  payload: routeId
+});

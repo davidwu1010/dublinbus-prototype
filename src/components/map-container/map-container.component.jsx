@@ -3,8 +3,9 @@ import React from 'react';
 // import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import { GoogleApiWrapper, Map, Polyline } from 'google-maps-react';
 import { createStructuredSelector } from 'reselect';
-import { selectPolylines } from '../../redux/planner/planner.selector';
+import { selectPolylines, selectSelectedRoute } from '../../redux/planner/planner.selector';
 import { connect } from 'react-redux';
+import { selectRoute } from '../../redux/planner/planner.actions';
 
 // const apiKey = 'AIzaSyBPyIqf7hOMSCjqSq--50UKiJ9Xzmbssmk';
 
@@ -22,16 +23,21 @@ const center = {
 
 
 function MapContainer(props) {
-  const { polylines } = props;
+  const { polylines, selectRoute, selectedRoute } = props;
   return(
     <Map google={window.google} containerStyle={containerStyle} initialCenter={center} zoom={13} disableDefaultUI={true}>
-      { polylines.map((polyline, index) => <Polyline key={index} path={polyline} strokeColor="#BBBDBF" strokeWeight={6}/>) }
+      { polylines.map((polyline, index) => <Polyline key={index} path={polyline} zIndex={index === selectedRoute ? 1 : 0} strokeColor={index === selectedRoute ? '#669DF6' : '#BBBDBF'} strokeWeight={6} onClick={() => selectRoute(index)}/>) }
     </Map>
   );
 }
 
 const mapStateToProps = createStructuredSelector({
-  polylines: selectPolylines
+  polylines: selectPolylines,
+  selectedRoute: selectSelectedRoute
 });
 
-export default connect(mapStateToProps)(MapContainer);
+const mapDispatchToProps = dispatch => ({
+  selectRoute: routeId => dispatch(selectRoute(routeId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);

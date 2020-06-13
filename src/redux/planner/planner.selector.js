@@ -46,3 +46,8 @@ export const selectPolylines = createSelector(
   [selectRoutes],
   routes => routes.map(route => route.overview_path.map(path => ({ lat: path.lat(), lng: path.lng() })))
 );
+
+export const selectSelectedRoute = createSelector(
+  [selectPlanner],
+  planner => planner.selectedRoute
+);

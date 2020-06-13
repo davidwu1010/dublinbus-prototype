@@ -38,7 +38,7 @@ function HomePage(props) {
           <Grid item>
             <FormInput />
           </Grid>
-          {routes.map((route, index) => (<Grid item><RouteCard key={index} steps={route.legs[0].steps} /> </Grid>))}
+          {routes.map((route, index) => (<Grid item key={index}><RouteCard steps={route.legs[0].steps} /> </Grid>))}
         </Grid>
       </Paper>
       <Hidden xsDown>

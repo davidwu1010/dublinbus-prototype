@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   origin: '',
   dest: '',
   directions: null,
+  selectedRoute: 0
 };
 
 const plannerReducer = (state = INITIAL_STATE, action) => {
@@ -43,6 +44,11 @@ const plannerReducer = (state = INITIAL_STATE, action) => {
         ...state,
         destList: state.originList,
         originList: temp
+      };
+    case PlannerActionTypes.SELECT_ROUTE:
+      return {
+        ...state,
+        selectedRoute: action.payload
       };
     default:
       return state;
