@@ -30,7 +30,7 @@ function Header(props) {
         <Button className={classes.loginButton} color="inherit">Login</Button>
       </Toolbar>
     </AppBar>
-    <Toolbar />
+      <Toolbar />
     </React.Fragment>
   );
 }

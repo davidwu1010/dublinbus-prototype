@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, IconButton, Toolbar } from '@material-ui/core';
 
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import LeftDrawer from './components/left-drawer/left-drawer.component';
+import MenuIcon from '@material-ui/icons/Menu';
+import { toggleDrawer } from './redux/drawer/drawer.action';
+import { connect } from 'react-redux';
 
-function App() {
+function App(props) {
+  const { toggleDrawer } = props;
   return (
     <React.Fragment>
       <CssBaseline />
@@ -16,5 +20,4 @@ function App() {
     </React.Fragment>
   );
 }
-
 export default App;

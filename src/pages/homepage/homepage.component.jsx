@@ -8,15 +8,19 @@ import { connect } from 'react-redux';
 import RouteCard from '../../components/route-card/route-card.component';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Toolbar from '@material-ui/core/Toolbar';
 
 const useStyles = makeStyles(theme => ({
   paperContainer: {
-    width: '400px',
     position: 'fixed',
-    height: '100vh',
+    width: '400px',
+    height: 'calc(100vh - 64px)',
+    overflowX: 'hidden',
     overflowY: 'auto',
     [theme.breakpoints.down('xs')]: {
-      width: '100vw'
+      width: '100vw',
+      height: 'calc(100vh - 48px)',
     }
   }
 }));
@@ -27,14 +31,18 @@ function HomePage(props) {
   const classes = useStyles();
   return (
     <>
-      <Paper elevation={10} className={classes.paperContainer} spacing={1}>
-          <FormInput/>
-          { routes.map((route, index) => (<RouteCard key={index} steps={route.legs[0].steps}/>) ) }
+      <Paper elevation={10} className={classes.paperContainer}>
+        <Grid container direction="column">
+          <Grid item>
+            <FormInput />
+          </Grid>
+          {routes.map((route, index) => (<Grid item><RouteCard key={index} steps={route.legs[0].steps} /> </Grid>))}
+        </Grid>
       </Paper>
       <Hidden xsDown>
         <MapContainer />
       </Hidden>
-      </>
+    </>
   );
 }
 
