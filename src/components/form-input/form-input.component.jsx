@@ -30,12 +30,13 @@ const useStyles = makeStyles({
     padding: '16px 0'
   },
   input: {
-    width: '320px',
+    width: '340px',
   },
   switchButton: {
     position: 'absolute',
     right: '7px',
-    top: '50px'
+    top: '50px',
+    zIndex: 1
   },
   submitButton: {
     height: '56px'
@@ -43,7 +44,8 @@ const useStyles = makeStyles({
 });
 
 function FormInput(props) {
-  const { startAutocomplete,
+  const {
+          startAutocomplete,
           setOrigin,
           setDest,
           originPredictions,

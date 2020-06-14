@@ -9,9 +9,7 @@ function Planner(props) {
       <Grid item>
         <FormInput />
       </Grid>
-      <Grid item>
-        <RoutesList />
-      </Grid>
+      <RoutesList />
     </Grid>
   );
 }
