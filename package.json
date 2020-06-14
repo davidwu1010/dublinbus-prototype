@@ -2,7 +2,6 @@
   "name": "dublinbus",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://davidwu1010.github.io/dublinbus-prototype",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
@@ -14,9 +13,7 @@
     "axios": "^0.19.2",
     "dayjs": "^1.8.28",
     "firebase": "^7.15.0",
-    "firebaseui": "^4.5.1",
     "google-maps-react": "git+https://github.com/sselfridge/google-maps-react.git",
-    "mui-places-autocomplete": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",

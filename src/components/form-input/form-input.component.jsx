@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   },
   switchButton: {
     position: 'absolute',
-    right: '8px',
+    right: '7px',
     top: '50px'
   },
   submitButton: {
