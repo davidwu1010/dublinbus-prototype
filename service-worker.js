@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/dublinbus-prototype/precache-manifest.7d2486ddd86cfe36341657dbdc287a84.js"
+  "/dublinbus-prototype/precache-manifest.b934a0e8b85a76068d7a8bd7fcdeabd0.js"
 );
 
 self.addEventListener('message', (event) => {
