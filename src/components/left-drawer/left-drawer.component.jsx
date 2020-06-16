@@ -12,6 +12,8 @@ import { selectDrawerOpen } from '../../redux/drawer/drawer.selectors';
 import { toggleDrawer } from '../../redux/drawer/drawer.action';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
+import DirectionsBusIcon from '@material-ui/icons/DirectionsBus';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
@@ -34,13 +36,19 @@ function LeftDrawer(props) {
       onKeyDown={toggleDrawer}
     >
       <List>
-        <ListItem button>
+        <ListItem button component={Link} to="/">
+          <ListItemIcon>
+            <DirectionsBusIcon />
+          </ListItemIcon>
+          <ListItemText primary="Planner" />
+        </ListItem>
+        <ListItem button component={Link} to="/saved">
           <ListItemIcon>
             <BookmarksIcon />
           </ListItemIcon>
           <ListItemText primary="Saved" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/timetables">
           <ListItemIcon>
             <AccessTimeIcon />
           </ListItemIcon>
@@ -51,7 +59,6 @@ function LeftDrawer(props) {
     </div>
   );
 
-  const anchor = 'left';
   return (
       <React.Fragment>
         <SwipeableDrawer
