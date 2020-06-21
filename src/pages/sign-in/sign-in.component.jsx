@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -10,6 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import { Link as RouterLink } from 'react-router-dom';
+import { emailSignInStart, googleSignInStart } from '../../redux/user/user.actions';
+import { connect } from 'react-redux';
 
 // This component is adapted from a material-ui template
 // https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/templates/sign-in/SignIn.js
@@ -34,8 +36,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+function SignIn({ googleSignInStart, emailSignInStart }) {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    emailSignInStart(email, password);
+  }
+
+  const handleChange = event => {
+    const { value, name } = event.target;
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -46,7 +64,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -57,6 +75,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleChange}
+            value={email}
           />
           <TextField
             variant="outlined"
@@ -68,6 +88,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={handleChange}
+            value={password}
           />
           <Button
             type="submit"
@@ -79,11 +101,12 @@ export default function SignIn() {
             Sign In
           </Button>
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={googleSignInStart}
           >
             Sign In With Google
           </Button>
@@ -99,3 +122,11 @@ export default function SignIn() {
     </Container>
   );
 }
+
+const mapDispatchToProps = dispatch => ({
+  googleSignInStart: () => dispatch(googleSignInStart()),
+  emailSignInStart: (email, password) =>
+    dispatch(emailSignInStart({ email, password }))
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);

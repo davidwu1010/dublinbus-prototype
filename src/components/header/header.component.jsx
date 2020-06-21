@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { toggleDrawer } from '../../redux/drawer/drawer.action';
 import { Link as RouterLink } from 'react-router-dom';
+import { signOutStart } from '../../redux/user/user.actions';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -21,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header(props) {
-  const { toggleDrawer } = props;
+  const { toggleDrawer, currentUser, signOut } = props;
 
   const classes = useStyles();
   return (
@@ -32,7 +34,10 @@ function Header(props) {
             <MenuIcon />
           </IconButton>
         <Typography variant="h6" className={classes.title} component={RouterLink} to="/">Dublin Bus</Typography>
-        <Button color="inherit" className={classes.signInButton} component={RouterLink} to="/sign-in">Sign In</Button>
+        { currentUser ?
+          <Button color="inherit" className={classes.signInButton} onClick={signOut}  >Sign Out</Button>
+          :<Button color="inherit" className={classes.signInButton} component={RouterLink} to="/sign-in">Sign In</Button>
+        }
       </Toolbar>
     </AppBar>
       <Toolbar />
@@ -41,11 +46,12 @@ function Header(props) {
 }
 
 const mapStateToProps = createStructuredSelector({
-
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleDrawer: () => dispatch(toggleDrawer())
+  toggleDrawer: () => dispatch(toggleDrawer()),
+  signOut: () => dispatch(signOutStart())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
